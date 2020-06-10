@@ -101,7 +101,7 @@ class MarketTest < Minitest::Test
     market.add_vendor(vendor1)
     market.add_vendor(vendor2)
     market.add_vendor(vendor3)
-    assert_equal 0, market.total_inventory
+    assert_equal ({}), market.total_inventory
   end
 
 end

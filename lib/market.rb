@@ -26,7 +26,22 @@ class Market
   end
 
   def total_inventory
-
+    hash = Hash.new(0)
+    @vendors.each do |vendor|
+      vendor.inventory.keys.each do |key|
+        hash[key] = { quantity: 0, vendors: [] }
+      end
+    @vendors.each do |vendor|
+      vendor.inventory.keys.each do |key|
+        hash[key][:quantity] += vendor.inventory.values.sum
+        if hash[key][:vendors].nil? == false
+        hash[key][:vendors] << vendor
+        else
+        end
+      end
+    end
+  end
+  hash
   end
 
 end
