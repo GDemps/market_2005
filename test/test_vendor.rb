@@ -26,8 +26,13 @@ class VendorTest < Minitest::Test
   def test_stock
     vendor = Vendor.new("Rocky Mountain Fresh")
     item1 = Item.new({name: 'Peach', price: "$0.75"})
-    # item2 = Item.new({name: 'Tomato', price: '$0.50'})
-    assert_equal ({item: 30}), vendor.stock(item1, 30)
+    item2 = Item.new({name: 'Tomato', price: '$0.50'})
+    assert_equal ({item1 => 30}), vendor.stock(item1, 30)
+    assert_equal 30, vendor.check_stock(item1)
+    vendor.stock(item1, 25)
+    assert_equal 55, vendor.check_stock(item1)
+    vendor.stock(item2, 12)
+    assert_equal ({item1 => 55, item2 => 12}), vendor.inventory
   end
 
 
