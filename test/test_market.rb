@@ -18,7 +18,7 @@ class MarketTest < Minitest::Test
     assert_equal [], market.vendors
   end
 
-  def test_case_name
+  def test_add_vendor
     market = Market.new("South Pearl Street Farmers Market")
     vendor1 = Vendor.new("Rocky Mountain Fresh")
     item1 = Item.new({name: 'Peach', price: "$0.75"})
