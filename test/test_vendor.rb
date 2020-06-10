@@ -35,5 +35,4 @@ class VendorTest < Minitest::Test
     assert_equal ({item1 => 55, item2 => 12}), vendor.inventory
   end
 
-
 end
