@@ -31,17 +31,19 @@ class Market
       vendor.inventory.keys.each do |key|
         hash[key] = { quantity: 0, vendors: [] }
       end
+    end
     @vendors.each do |vendor|
       vendor.inventory.keys.each do |key|
         hash[key][:quantity] += vendor.inventory.values.sum
-        if hash[key][:vendors].nil? == false
+        hash[key][:vendors].nil?
         hash[key][:vendors] << vendor
-        else
-        end
       end
     end
-  end
   hash
+  end
+
+  def overstocked_items
+
   end
 
 end
