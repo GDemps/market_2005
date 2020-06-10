@@ -25,4 +25,8 @@ class Market
     selling_vend
   end
 
+  def total_inventory
+
+  end
+
 end
