@@ -12,4 +12,11 @@ class Vendor
     @inventory[:item]
   end
 
+  def stock(item, amount)
+    @inventory[:item] += amount
+    require "pry"
+    binding.pry
+    @inventory
+  end
+
 end
