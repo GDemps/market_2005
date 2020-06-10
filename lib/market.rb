@@ -26,24 +26,25 @@ class Market
   end
 
   def total_inventory
-    hash = Hash.new(0)
-    @vendors.each do |vendor|
-      vendor.inventory.keys.each do |key|
-        hash[key] = { quantity: 0, vendors: [] }
+      vendors.reduce(Hash.new { |market_inventory, item| market_inventory[item] = {quantity: 0, vendors: []} }) do |acc, vendor|
+        vendor.inventory.each do |vendor_item, quantity|
+          acc[vendor_item][:quantity] += quantity
+          acc[vendor_item][:vendors] << vendor
+        end
+        acc
       end
-    end
-    @vendors.each do |vendor|
-      vendor.inventory.keys.each do |key|
-        hash[key][:quantity] += vendor.inventory.values.sum
-        hash[key][:vendors].nil?
-        hash[key][:vendors] << vendor
-      end
-    end
-  hash
   end
 
-  def overstocked_items
-
+  def sorted_item_list
+    @vendors.each do |vendor|
+      list = vendor.inventory.sort_by do |item|
+        item[0].name[0]
+      end
+      final= list.map do |item|
+        item.name
+      end
+      final
+    end
   end
 
 end
